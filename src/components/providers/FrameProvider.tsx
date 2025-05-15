@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import sdk, { type Context, type FrameNotificationDetails, AddFrame } from "@farcaster/frame-sdk";
+import sdk, { type Context, type FrameNotificationDetails } from "@farcaster/frame-sdk";
 import { createStore } from "mipd";
 import React from "react";
 
@@ -58,11 +58,14 @@ export function useFrame() {
           : "Added, got no notification details"
       );
     } catch (error) {
+      setAddFrameResult(`Error: ${error}`);
+      /*
       if (error instanceof AddFrame.RejectedByUser || error instanceof AddFrame.InvalidDomainManifest) {
         setAddFrameResult(`Not added: ${error.message}`);
       }else {
         setAddFrameResult(`Error: ${error}`);
       }
+        */
     }
   }, []);
 
